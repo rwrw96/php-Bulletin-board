@@ -16,10 +16,11 @@ if (isset($_POST['name']) && isset($_POST['email'])){
 }
 
 $stmt = $db -> prepare('SELECT * FROM users WHERE id=?');
-$stmt -> execute(array($id));
+$stmt -> execute(array($_GET['id']));
 $user = $stmt -> fetch();
 
 var_dump($_SESSION['user_id']);
+echo $_GET['id'];
 ?>
 
 <!DOCTYPE html>
