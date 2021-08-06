@@ -2,7 +2,8 @@
 require('dbconnect.php');
 session_start();
 
-echo $_SESSION['user_id']['name'];
+$id = (int)$_SESSION['user_id']['id'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +14,6 @@ echo $_SESSION['user_id']['name'];
 	<title>Document</title>
 </head>
 <body>
-
+<a href="mypage.php?=<?php echo $id; ?>">マイページへ</a>
 </body>
 </html>

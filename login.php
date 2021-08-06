@@ -21,7 +21,7 @@
 			$error['password'] = 'blank';
 		}
 	}
-		
+
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +47,7 @@
 		<?php endif; ?>
 		<input type="text" name="password" id="password">
 		<button type="submit">ログインする</button>
+		<p><a href="signup.php">新規登録はこちらから</a></p>
 	</form>
 </body>
 </html>
