@@ -5,7 +5,7 @@
 	$name = $_POST['name'];
 	$email = $_POST['email'];
 	$password = $_POST['password'];
-	$_SESSION['name'] = $name;
+
 
 	$users = $db -> prepare('SELECT * FROM users WHERE email=?');
 	$users -> execute(array($_POST['email']));
