@@ -2,25 +2,27 @@
 require('dbconnect.php');
 session_start();
 
-if ($_SESSION['user_id']['id']){
-	$id = (int)$_SESSION['user_id']['id'];
-}
-
-if (!$id){
-    header('Location: login.php');
-}
-
-if (isset($_POST['name']) && isset($_POST['email'])){
-	$stmt = $db -> prepare('UPDATE users SET name=?,email=?, updated_at=NOW() WHERE id=?');
-	$stmt -> execute(array($_POST['name'], $_POST['email'], $id));
-}
-
 $stmt = $db -> prepare('SELECT * FROM users WHERE id=?');
 $stmt -> execute(array($_GET['id']));
 $user = $stmt -> fetch();
 
+
+if ($_SESSION['user_id']['id']){
+	$id = (int)$_SESSION['user_id']['id'];
+}
+
+if (!isset($id) || !$user){
+    header('Location: login.php');
+}
+
+
+
+
+
 var_dump($_SESSION['user_id']);
 echo $_GET['id'];
+var_dump($_FILES['image']);
+var_dump($user['image']);
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +37,7 @@ echo $_GET['id'];
   <h2>プロフィール</h2>
 	<h4>あなたの名前：<?php echo $user['name']; ?></h4>
 	<h4>あなたのメールアドレス：<?php echo $user['email']; ?></h4>
-
+	<h4>あなたの画像：<img src="user_image/<?php echo $user['image']; ?>"　alt="写真" width="193" height="130"></h4>
 	<p><a href='user_edit.php?id=<?php echo $id; ?>'>編集する</a></p>
 	<p><a href="logout.php?id=<?php echo $id; ?>">ログアウトする</a></p>
 </body>
