@@ -23,11 +23,13 @@ $user = $stmt -> fetch();
     <title>Document</title>
 </head>
 <body>
-  <form action="mypage.php?id=<?php echo $id; ?>" method="post">
+  <form action='user_edit_do.php?id=<?php echo $id; ?>' method="post" enctype="multipart/form-data">
 		<p><label for="name">お名前</label></p>
 		<input type="text" name="name" id="name" value="<?php echo $user['name']; ?>">
 		<p><label for="email">メールアドレス</label></p>
 		<input type="text" name="email" id="email" value="<?php echo $user['email']; ?>">
+		<p><label for="image">画像</label></p>
+		<input type="file" name="image" id="image">
 		<button type="submit">更新する</button>
 	</form>
 </body>
